@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resolutor de Equações Quadráticas</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body data-theme="dark">
+    <button class="theme-toggle" onclick="toggleTheme()" title="Alternar tema">☀️</button>
+
+    <header>
+        <h1>Resolutor de Equações Quadráticas</h1>
+        <h2>Calcule raízes, visualize parábolas e aprenda matemática interativamente</h2>
+        <div class="formula-bhaskara">
+            \[ x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \]
+        </div>
+        <div class="readme"
+            onclick="window.open('assets/documents/readme.md', '_blank')">
+            <i class="ri-information-fill"></i>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="left-panel">
+            <h3>Insira os Coeficientes</h3>
+            <div class="inputs">
+                <div class="input-group">
+                    <label for="a">Coeficiente a (≠ 0):</label>
+                    <input type="number" id="a" step="any" placeholder="Ex: 1" required>
+                </div>
+                <div class="input-group">
+                    <label for="b">Coeficiente b:</label>
+                    <input type="number" id="b" step="any" placeholder="Ex: -5" required>
+                </div>
+                <div class="input-group">
+                    <label for="c">Coeficiente c:</label>
+                    <input type="number" id="c" step="any" placeholder="Ex: 4" required>
+                </div>
+                <button class="btn voice-btn" id="voiceBtn" onclick="iniciarVoz()">
+                    <i class="ri-mic-fill"></i> Usar Voz
+                </button>
+                <button class="btn btn-primary" onclick="calcularEquacao()">Calcular Equação</button>
+                <button class="btn btn-secondary" onclick="limparTudo()">Limpar Tudo</button>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <div class="explanation">
+                <h3>Explicação do Cálculo</h3>
+                <div id="explicacao"></div>
+            </div>
+            <div class="chart-container">
+                <h3>Gráfico da Parábola</h3>
+                <canvas id="graficoParabola"></canvas>
+            </div>
+        </div>
+
+        <div class="bottom-panel">
+            <h3>Histórico de Cálculos</h3>
+            <div class="history" id="historico"></div>
+        </div>
+    </main>
+
+    <footer>
+        <h1>Resolutor de Equações Quadráticas</h1>
+        <h2>Desenvolvido por: João Guilherme, Laura Lopes</h2>
+        <p>&copy; 2025 - Todos os direitos reservados</p>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>
