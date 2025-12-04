@@ -50,7 +50,7 @@ Veja a representação gráfica da sua equação.
 1.  **Acesso ao Gráfico:** O **Gráfico da Parábola** estará visível abaixo da Explicação de Cálculo.
 2.  **Análise Visual:** Um gráfico será gerado no plano cartesiano. Observe a curva (a parábola) e verifique se os pontos em que ela cruza a linha horizontal (o eixo x) correspondem aos resultados que você calculou na etapa II.
 
-![Gráfico da Parábola](https://drive.google.com/file/d/1vydDPPEczSMqTHHhxGqb1tzeDwtppzTp/view?usp=sharing)
+<img src="assets/documents/graph.png" alt="Descrição" width="600"/>
 
 
 ### V. Gerenciamento e Histórico
