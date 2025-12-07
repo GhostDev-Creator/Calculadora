@@ -29,11 +29,25 @@ body {
     background: var(--bg-primary);
     color: var(--text-primary);
     line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+header, footer {
+    width: 100vw;
+    margin: 0;
+    padding: 2rem 1rem;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
 }
 
 header {
     background: var(--bg-secondary);
-    padding: 2rem;
     text-align: center;
     border-bottom: 1px solid var(--border);
 }
@@ -58,24 +72,29 @@ header h2 {
     border: 2px solid var(--accent);
 }
 
-.readme {
+.readme a {
     cursor: pointer;
     color: var(--accent);
-    font-size: 1.5rem;
+    font-size: 28px;
     transition: color 0.3s;
+    display: inline-block;
+    width: auto;
+    text-decoration: none;
 }
 
-.readme:hover {
+.readme a:hover {
     color: #ffb347;
 }
 
 .container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 2rem 1rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .left-panel,
@@ -132,12 +151,9 @@ input:focus {
 }
 
 @keyframes pulse {
-
-    0%,
-    100% {
+    0%, 100% {
         transform: scale(1);
     }
-
     50% {
         transform: scale(1.05);
     }
@@ -151,7 +167,7 @@ input:focus {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s;
-    margin: 0.25rem;
+    margin: 0.25rem 0;
 }
 
 .btn-primary {
@@ -192,9 +208,10 @@ input:focus {
     grid-column: 1 / -1;
     background: var(--bg-secondary);
     border-radius: 12px;
-    padding: 2rem;
+    padding: 2rem 1rem;
     border: 1px solid var(--border);
     margin-top: 2rem;
+    width: 100%;
 }
 
 .history {
@@ -227,7 +244,6 @@ input:focus {
 
 footer {
     background: var(--bg-secondary);
-    padding: 2rem;
     text-align: center;
     border-top: 1px solid var(--border);
     margin-top: 2rem;
@@ -267,21 +283,84 @@ footer {
     color: var(--success);
 }
 
+/* RESPONSIVO MOBILE */
 @media (max-width: 768px) {
-    .container {
-        grid-template-columns: 1fr;
-        padding: 1rem;
+    header, footer {
+        width: 100vw;
+        padding: 1.5rem 0.5rem;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
     }
-
+    
     header h1 {
         font-size: 2rem;
     }
-
+    
+    header h2 {
+        font-size: 1rem;
+    }
+    
     .formula-bhaskara {
         font-size: 1.5rem;
+        padding: 0.75rem;
+        margin: 1rem 0;
     }
-
+    
+    .container {
+        grid-template-columns: 1fr;
+        padding: 1rem 0.5rem;
+        gap: 1rem;
+        margin: 0;
+        width: 100%;
+    }
+    
+    .left-panel,
+    .right-panel {
+        padding: 1.5rem 1rem;
+    }
+    
+    .inputs {
+        gap: 0.75rem;
+    }
+    
+    .btn {
+        padding: 0.875rem 1.5rem;
+        font-size: 1rem;
+        width: 100%;
+        margin: 0.25rem 0;
+    }
+    
     .chart-container {
         height: 300px;
+    }
+    
+    .bottom-panel {
+        padding: 1.5rem 1rem;
+        margin-top: 1rem;
+    }
+    
+    .theme-toggle {
+        top: 0.5rem;
+        right: 0.5rem;
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.75rem;
+    }
+    
+    .formula-bhaskara {
+        font-size: 1.25rem;
+    }
+    
+    input {
+        font-size: 1rem;
+        padding: 0.75rem;
     }
 }
