@@ -35,6 +35,8 @@ body {
     overflow-x: hidden;
 }
 
+/* --- Layout e Estrutura --- */
+
 header, footer {
     width: 100vw;
     margin: 0;
@@ -72,20 +74,6 @@ header h2 {
     border: 2px solid var(--accent);
 }
 
-.readme a {
-    cursor: pointer;
-    color: var(--accent);
-    font-size: 28px;
-    transition: color 0.3s;
-    display: inline-block;
-    width: auto;
-    text-decoration: none;
-}
-
-.readme a:hover {
-    color: #ffb347;
-}
-
 .container {
     max-width: 1400px;
     margin: 0 auto;
@@ -104,6 +92,60 @@ header h2 {
     padding: 2rem;
     border: 1px solid var(--border);
 }
+
+.explanation,
+.chart-container {
+    background: var(--bg-primary);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+.chart-container {
+    height: 400px;
+    position: relative;
+}
+
+.bottom-panel {
+    grid-column: 1 / -1;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 2rem 1rem;
+    border: 1px solid var(--border);
+    margin-top: 2rem;
+    width: 100%;
+}
+
+footer {
+    background: var(--bg-secondary);
+    text-align: center;
+    border-top: 1px solid var(--border);
+    margin-top: 2rem;
+}
+
+/* --- README Icone FIX --- */
+
+/* Esta regra de alta especificidade garante que a cor seja sempre o ACCENT */
+.readme a i.ri-information-fill {
+    color: var(--accent) !important;
+    font-size: 28px !important;
+}
+
+.readme a {
+    cursor: pointer;
+    color: var(--accent); /* Garante que o link também tenha a cor */
+    font-size: 28px;
+    transition: color 0.3s;
+    display: inline-block;
+    width: auto;
+    text-decoration: none;
+}
+
+.readme a:hover {
+    color: #ffb347;
+}
+
+/* --- Formulários e Botões --- */
 
 .inputs {
     display: flex;
@@ -136,29 +178,6 @@ input:focus {
     border-color: var(--accent);
 }
 
-.voice-btn {
-    background: var(--success);
-    color: white;
-}
-
-.voice-btn:hover {
-    background: #22c55e;
-}
-
-.voice-btn.listening {
-    background: #eab308;
-    animation: pulse 1s infinite;
-}
-
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.05);
-    }
-}
-
 .btn {
     padding: 1rem 2rem;
     border: none;
@@ -185,34 +204,30 @@ input:focus {
     color: var(--text-primary);
 }
 
-.right-panel {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+.voice-btn {
+    background: var(--success);
+    color: white;
 }
 
-.explanation,
-.chart-container {
-    background: var(--bg-primary);
-    padding: 1.5rem;
-    border-radius: 8px;
-    border: 1px solid var(--border);
+.voice-btn:hover {
+    background: #22c55e;
 }
 
-.chart-container {
-    height: 400px;
-    position: relative;
+.voice-btn.listening {
+    background: #eab308;
+    animation: pulse 1s infinite;
 }
 
-.bottom-panel {
-    grid-column: 1 / -1;
-    background: var(--bg-secondary);
-    border-radius: 12px;
-    padding: 2rem 1rem;
-    border: 1px solid var(--border);
-    margin-top: 2rem;
-    width: 100%;
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
 }
+
+/* --- Histórico --- */
 
 .history {
     display: flex;
@@ -242,12 +257,7 @@ input:focus {
     font-size: 0.9rem;
 }
 
-footer {
-    background: var(--bg-secondary);
-    text-align: center;
-    border-top: 1px solid var(--border);
-    margin-top: 2rem;
-}
+/* --- Utilitários e Temas --- */
 
 .theme-toggle {
     position: fixed;
@@ -283,7 +293,7 @@ footer {
     color: var(--success);
 }
 
-/* RESPONSIVO MOBILE */
+/* --- RESPONSIVO MOBILE --- */
 @media (max-width: 768px) {
     header, footer {
         width: 100vw;
@@ -371,9 +381,4 @@ footer {
     .readme a {
         color: var(--accent);
     }
-}
-
-.readme a i.ri-information-fill {
-    color: var(--accent) !important;
-    font-size: 28px !important;
 }
