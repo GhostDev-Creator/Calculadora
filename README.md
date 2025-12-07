@@ -70,7 +70,7 @@ Você tem duas opções para usar o Resolutor de Equações Quadráticas:
     * Clique no link direto para o site: **https://ghostdev-creator.github.io/Calculadora/**
 2.  **Execução Local:**
     * Baixe o repositório completo para o seu computador.
-    * Localize o arquivo principal (geralmente **`index.html`**).
+    * Localize o arquivo principal (**`index.html`**).
     * **Abra o arquivo `index.html`** diretamente no seu navegador de internet (Chrome, Firefox, Edge, etc.).
 
 ---
