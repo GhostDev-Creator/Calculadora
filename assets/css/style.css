@@ -31,17 +31,6 @@ body {
     line-height: 1.6;
 }
 
-header, footer {
-    width: 100vw;
-    margin: 0;
-    padding: 2rem 1rem;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-}
-
 header {
     background: var(--bg-secondary);
     padding: 2rem;
@@ -238,6 +227,7 @@ input:focus {
 
 footer {
     background: var(--bg-secondary);
+    padding: 2rem;
     text-align: center;
     border-top: 1px solid var(--border);
     margin-top: 2rem;
@@ -278,76 +268,20 @@ footer {
 }
 
 @media (max-width: 768px) {
-    header, footer {
-        width: 100vw;
-        padding: 1.5rem 0.5rem;
-        left: 50%;
-        right: 50%;
-        margin-left: -50vw;
-        margin-right: -50vw;
+    .container {
+        grid-template-columns: 1fr;
+        padding: 1rem;
     }
+
     header h1 {
         font-size: 2rem;
     }
-    header h2 {
-        font-size: 1rem;
-    }
+
     .formula-bhaskara {
         font-size: 1.5rem;
-        padding: 0.75rem;
-        margin: 1rem 0;
     }
-    .container {
-        grid-template-columns: 1fr;
-        padding: 1rem 0.5rem;
-        gap: 1rem;
-        margin: 0;
-        width: 100%;
-    }
-    .left-panel,
-    .right-panel {
-        padding: 1.5rem 1rem;
-    }
-    .inputs {
-        gap: 0.75rem;
-    }
-    .btn {
-        padding: 0.875rem 1.5rem;
-        font-size: 1rem;
-        width: 100%;
-        margin: 0.25rem 0;
-    }
+
     .chart-container {
         height: 300px;
-    }
-    .bottom-panel {
-        padding: 1.5rem 1rem;
-        margin-top: 1rem;
-    }
-    .theme-toggle {
-        top: 0.5rem;
-        right: 0.5rem;
-        width: 45px;
-        height: 45px;
-        font-size: 1.1rem;
-    }
-    .readme i.ri-information-fill {
-        color: var(--accent);
-    }
-}
-
-@media (max-width: 480px) {
-    header h1 {
-        font-size: 1.75rem;
-    }
-    .formula-bhaskara {
-        font-size: 1.25rem;
-    }
-    input {
-        font-size: 1rem;
-        padding: 0.75rem;
-    }
-    .readme i.ri-information-fill {
-        color: var(--accent);
     }
 }
