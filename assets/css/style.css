@@ -283,6 +283,7 @@ footer {
     color: var(--success);
 }
 
+/* RESPONSIVO MOBILE */
 @media (max-width: 768px) {
     header, footer {
         width: 100vw;
@@ -347,6 +348,10 @@ footer {
         height: 45px;
         font-size: 1.1rem;
     }
+
+    .readme a {
+        color: var(--accent);
+    }
 }
 
 @media (max-width: 480px) {
@@ -362,5 +367,8 @@ footer {
         font-size: 1rem;
         padding: 0.75rem;
     }
-}
 
+    .readme a {
+        color: var(--accent);
+    }
+}
