@@ -372,3 +372,8 @@ footer {
         color: var(--accent);
     }
 }
+
+.readme a i.ri-information-fill {
+    color: var(--accent) !important;
+    font-size: 28px !important;
+}
