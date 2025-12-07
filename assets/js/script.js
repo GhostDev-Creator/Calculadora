@@ -83,22 +83,35 @@ function processarComandoVoz(comando) {
 }
 
 function validarInputs(a, b, c) {
-    if (!a || !b || !c) {
+    const aValue = document.getElementById('a').value.trim();
+    const bValue = document.getElementById('b').value.trim();
+    const cValue = document.getElementById('c').value.trim();
+
+    if (aValue === '' || bValue === '' || cValue === '') {
         mostrarAlerta('Preencha todos os campos!', 'error');
         return false;
     }
-    if (a == 0) {
-        mostrarAlerta('O coeficiente "a" não pode ser zero (não é equação quadrática)!', 'error');
-        return false;
-    }
-    if (isNaN(a) || isNaN(b) || isNaN(c)) {
+
+    const aNum = parseFloat(aValue);
+    const bNum = parseFloat(bValue);
+    const cNum = parseFloat(cValue);
+
+    if (isNaN(aNum) || isNaN(bNum) || isNaN(cNum)) {
         mostrarAlerta('Insira apenas números válidos!', 'error');
         return false;
     }
+
+    if (aNum === 0) {
+        mostrarAlerta('O coeficiente "a" não pode ser zero (não é equação quadrática)!', 'error');
+        return false;
+    }
+
     return true;
 }
 
 function mostrarAlerta(mensagem, tipo) {
+    document.querySelectorAll('.alert').forEach(alert => alert.remove());
+    
     const alertDiv = document.createElement('div');
     alertDiv.className = `alert alert-${tipo}`;
     alertDiv.textContent = mensagem;
@@ -111,11 +124,13 @@ function calcularDelta(a, b, c) {
 }
 
 function calcularRaizes(a, b, c, delta) {
-    if (delta > 0) {
+    const tolerancia = 0.0000001;
+
+    if (delta > tolerancia) {
         const x1 = (-b + Math.sqrt(delta)) / (2 * a);
         const x2 = (-b - Math.sqrt(delta)) / (2 * a);
         return { x1: parseFloat(x1.toFixed(6)), x2: parseFloat(x2.toFixed(6)), tipo: 'reais_distintas' };
-    } else if (delta === 0) {
+    } else if (Math.abs(delta) <= tolerancia) {
         const x0 = -b / (2 * a);
         return { x1: parseFloat(x0.toFixed(6)), x2: parseFloat(x0.toFixed(6)), tipo: 'real_dupla' };
     } else {
@@ -138,24 +153,25 @@ function formatarNumero(num) {
 function gerarExplicacao(a, b, c, delta, raizes) {
     const bFormatado = b >= 0 ? `+${formatarNumero(b)}` : formatarNumero(b);
     const cFormatado = c >= 0 ? `+${formatarNumero(c)}` : formatarNumero(c);
+    const deltaFormatado = formatarNumero(delta);
 
     let explicacao = `
         <div class="formula-bhaskara mb-2">
             \\[${formatarNumero(a)}x^2 ${bFormatado}x ${cFormatado} = 0\\]
         </div>
-        <p><strong>Discriminante (Δ):</strong> Δ = b² - 4ac = ${formatarNumero(b)}^2 - 4⋅${formatarNumero(a)}⋅${formatarNumero(c)} = <strong>${formatarNumero(delta)}</strong></p>
+        <p><strong>Discriminante (Δ):</strong> Δ = b² - 4ac = ${formatarNumero(b)}^2 - 4⋅${formatarNumero(a)}⋅${formatarNumero(c)} = <strong>${deltaFormatado}</strong></p>
     `;
 
     if (delta > 0) {
         explicacao += `
             <p><strong>Duas raízes reais distintas:</strong></p>
             <div class="formula-bhaskara">
-                \\[x_1 = \\frac{-${formatarNumero(b)} + \\sqrt{${formatarNumero(delta)}}}{2⋅${formatarNumero(a)}} = ${formatarNumero(raizes.x1)}\\]
+                \\[x_1 = \\frac{-${formatarNumero(b)} + \\sqrt{${deltaFormatado}}}{2⋅${formatarNumero(a)}} = ${formatarNumero(raizes.x1)}\\]
             </div>
             <div class="formula-bhaskara">
-                \\[x_2 = \\frac{-${formatarNumero(b)} - \\sqrt{${formatarNumero(delta)}}}{2⋅${formatarNumero(a)}} = ${formatarNumero(raizes.x2)}\\]
+                \\[x_2 = \\frac{-${formatarNumero(b)} - \\sqrt{${deltaFormatado}}}{2⋅${formatarNumero(a)}} = ${formatarNumero(raizes.x2)}\\]
             </div>`;
-    } else if (delta === 0) {
+    } else if (Math.abs(delta) <= 0.0000001) {
         explicacao += `
             <p><strong>Uma raiz real dupla:</strong></p>
             <div class="formula-bhaskara">
@@ -179,8 +195,20 @@ function gerarExplicacao(a, b, c, delta, raizes) {
 
 function gerarDadosGrafico(a, b, c, raizes) {
     const dados = [];
-    const minX = Math.min(-10, raizes.x1 - 5 || -10, raizes.x2 - 5 || -10);
-    const maxX = Math.max(10, raizes.x1 + 5 || 10, raizes.x2 + 5 || 10);
+    const vertice = calcularVertice(a, b, c);
+    let minX = vertice.x - 10;
+    let maxX = vertice.x + 10;
+
+    if (raizes.tipo !== 'complexas') {
+        const xMin = Math.min(raizes.x1, raizes.x2, vertice.x) - 5;
+        const xMax = Math.max(raizes.x1, raizes.x2, vertice.x) + 5;
+        minX = Math.min(minX, xMin);
+        maxX = Math.max(maxX, xMax);
+    }
+    
+    minX = Math.floor(minX);
+    maxX = Math.ceil(maxX);
+
 
     for (let x = minX; x <= maxX; x += 0.1) {
         const y = a * x * x + b * x + c;
@@ -214,7 +242,9 @@ function criarGrafico(dadosGrafico, a, b, c) {
                 x: {
                     type: 'linear',
                     position: 'bottom',
-                    title: { display: true, text: 'x' }
+                    title: { display: true, text: 'x' },
+                    min: dadosGrafico.limiteX[0],
+                    max: dadosGrafico.limiteX[1]
                 },
                 y: {
                     title: { display: true, text: 'y' }
@@ -270,8 +300,9 @@ function criarGrafico(dadosGrafico, a, b, c) {
 }
 
 function salvarHistorico(a, b, c, raizes) {
+    const delta = calcularDelta(a, b, c);
     const item = {
-        a, b, c, raizes,
+        a, b, c, raizes, delta,
         data: new Date().toLocaleString('pt-BR')
     };
     historico.unshift(item);
@@ -285,13 +316,18 @@ function atualizarHistorico() {
     historico.forEach((item, index) => {
         const div = document.createElement('div');
         div.className = 'history-item';
+        const deltaTxt = formatarNumero(item.delta || calcularDelta(item.a, item.b, item.c));
         const raizesTexto = item.raizes.tipo === 'complexas' ?
             `x = ${formatarNumero(item.raizes.real)} ± ${formatarNumero(item.raizes.imag)}i` :
             `x₁ = ${formatarNumero(item.raizes.x1)}, x₂ = ${formatarNumero(item.raizes.x2)}`;
+        
+        const bFormatado = item.b >= 0 ? `+${formatarNumero(item.b)}` : formatarNumero(item.b);
+        const cFormatado = item.c >= 0 ? `+${formatarNumero(item.c)}` : formatarNumero(item.c);
+
         div.innerHTML = `
             <div>
-                <strong>${formatarNumero(item.a)}x² ${item.b >= 0 ? '+' : ''}${formatarNumero(item.b)}x ${item.c >= 0 ? '+' : ''}${formatarNumero(item.c)} = 0</strong><br>
-                <small>${item.data} | ${raizesTexto}</small>
+                <strong>${formatarNumero(item.a)}x² ${bFormatado}x ${cFormatado} = 0</strong><br>
+                <small>${item.data} | ${raizesTexto} | Δ = ${deltaTxt}</small>
             </div>
             <button class="delete-btn" onclick="removerHistorico(${index})">Excluir</button>
         `;
@@ -306,11 +342,11 @@ function removerHistorico(index) {
 }
 
 function calcularEquacao() {
+    if (!validarInputs()) return;
+    
     const a = parseFloat(document.getElementById('a').value);
     const b = parseFloat(document.getElementById('b').value);
     const c = parseFloat(document.getElementById('c').value);
-
-    if (!validarInputs(a, b, c)) return;
 
     const delta = calcularDelta(a, b, c);
     const raizes = calcularRaizes(a, b, c, delta);
@@ -332,6 +368,7 @@ function limparTudo() {
     document.getElementById('explicacao').innerHTML = '';
     if (chart) chart.destroy();
     pararVoz();
+    document.querySelectorAll('.alert').forEach(alert => alert.remove());
 }
 
 atualizarHistorico();
