@@ -29,13 +29,8 @@ body {
     background: var(--bg-primary);
     color: var(--text-primary);
     line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    width: 100%;
     overflow-x: hidden;
 }
-
-/* --- Layout e Estrutura --- */
 
 header, footer {
     width: 100vw;
@@ -81,7 +76,6 @@ header h2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
-    width: 100%;
     box-sizing: border-box;
 }
 
@@ -123,29 +117,11 @@ footer {
     margin-top: 2rem;
 }
 
-/* --- README Icone FIX --- */
-
-/* Esta regra de alta especificidade garante que a cor seja sempre o ACCENT */
-.readme a i.ri-information-fill {
+.readme i.ri-information-fill {
     color: var(--accent) !important;
     font-size: 28px !important;
-}
-
-.readme a {
     cursor: pointer;
-    color: var(--accent); /* Garante que o link também tenha a cor */
-    font-size: 28px;
-    transition: color 0.3s;
-    display: inline-block;
-    width: auto;
-    text-decoration: none;
 }
-
-.readme a:hover {
-    color: #ffb347;
-}
-
-/* --- Formulários e Botões --- */
 
 .inputs {
     display: flex;
@@ -227,8 +203,6 @@ input:focus {
     }
 }
 
-/* --- Histórico --- */
-
 .history {
     display: flex;
     flex-direction: column;
@@ -256,8 +230,6 @@ input:focus {
     cursor: pointer;
     font-size: 0.9rem;
 }
-
-/* --- Utilitários e Temas --- */
 
 .theme-toggle {
     position: fixed;
@@ -293,7 +265,6 @@ input:focus {
     color: var(--success);
 }
 
-/* --- RESPONSIVO MOBILE --- */
 @media (max-width: 768px) {
     header, footer {
         width: 100vw;
@@ -303,21 +274,17 @@ input:focus {
         margin-left: -50vw;
         margin-right: -50vw;
     }
-    
     header h1 {
         font-size: 2rem;
     }
-    
     header h2 {
         font-size: 1rem;
     }
-    
     .formula-bhaskara {
         font-size: 1.5rem;
         padding: 0.75rem;
         margin: 1rem 0;
     }
-    
     .container {
         grid-template-columns: 1fr;
         padding: 1rem 0.5rem;
@@ -325,32 +292,26 @@ input:focus {
         margin: 0;
         width: 100%;
     }
-    
     .left-panel,
     .right-panel {
         padding: 1.5rem 1rem;
     }
-    
     .inputs {
         gap: 0.75rem;
     }
-    
     .btn {
         padding: 0.875rem 1.5rem;
         font-size: 1rem;
         width: 100%;
         margin: 0.25rem 0;
     }
-    
     .chart-container {
         height: 300px;
     }
-    
     .bottom-panel {
         padding: 1.5rem 1rem;
         margin-top: 1rem;
     }
-    
     .theme-toggle {
         top: 0.5rem;
         right: 0.5rem;
@@ -358,8 +319,7 @@ input:focus {
         height: 45px;
         font-size: 1.1rem;
     }
-
-    .readme a {
+    .readme i.ri-information-fill {
         color: var(--accent);
     }
 }
@@ -368,17 +328,14 @@ input:focus {
     header h1 {
         font-size: 1.75rem;
     }
-    
     .formula-bhaskara {
         font-size: 1.25rem;
     }
-    
     input {
         font-size: 1rem;
         padding: 0.75rem;
     }
-
-    .readme a {
+    .readme i.ri-information-fill {
         color: var(--accent);
     }
 }
