@@ -29,7 +29,6 @@ body {
     background: var(--bg-primary);
     color: var(--text-primary);
     line-height: 1.6;
-    overflow-x: hidden;
 }
 
 header, footer {
@@ -45,6 +44,7 @@ header, footer {
 
 header {
     background: var(--bg-secondary);
+    padding: 2rem;
     text-align: center;
     border-bottom: 1px solid var(--border);
 }
@@ -69,14 +69,24 @@ header h2 {
     border: 2px solid var(--accent);
 }
 
+.readme {
+    cursor: pointer;
+    color: var(--accent);
+    font-size: 1.5rem;
+    transition: color 0.3s;
+}
+
+.readme:hover {
+    color: #ffb347;
+}
+
 .container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 2rem 1rem;
+    padding: 2rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
-    box-sizing: border-box;
 }
 
 .left-panel,
@@ -85,42 +95,6 @@ header h2 {
     border-radius: 12px;
     padding: 2rem;
     border: 1px solid var(--border);
-}
-
-.explanation,
-.chart-container {
-    background: var(--bg-primary);
-    padding: 1.5rem;
-    border-radius: 8px;
-    border: 1px solid var(--border);
-}
-
-.chart-container {
-    height: 400px;
-    position: relative;
-}
-
-.bottom-panel {
-    grid-column: 1 / -1;
-    background: var(--bg-secondary);
-    border-radius: 12px;
-    padding: 2rem 1rem;
-    border: 1px solid var(--border);
-    margin-top: 2rem;
-    width: 100%;
-}
-
-footer {
-    background: var(--bg-secondary);
-    text-align: center;
-    border-top: 1px solid var(--border);
-    margin-top: 2rem;
-}
-
-.readme i.ri-information-fill {
-    color: var(--accent) !important;
-    font-size: 28px !important;
-    cursor: pointer;
 }
 
 .inputs {
@@ -154,6 +128,32 @@ input:focus {
     border-color: var(--accent);
 }
 
+.voice-btn {
+    background: var(--success);
+    color: white;
+}
+
+.voice-btn:hover {
+    background: #22c55e;
+}
+
+.voice-btn.listening {
+    background: #eab308;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
 .btn {
     padding: 1rem 2rem;
     border: none;
@@ -162,7 +162,7 @@ input:focus {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s;
-    margin: 0.25rem 0;
+    margin: 0.25rem;
 }
 
 .btn-primary {
@@ -180,27 +180,32 @@ input:focus {
     color: var(--text-primary);
 }
 
-.voice-btn {
-    background: var(--success);
-    color: white;
+.right-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
-.voice-btn:hover {
-    background: #22c55e;
+.explanation,
+.chart-container {
+    background: var(--bg-primary);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
 }
 
-.voice-btn.listening {
-    background: #eab308;
-    animation: pulse 1s infinite;
+.chart-container {
+    height: 400px;
+    position: relative;
 }
 
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.05);
-    }
+.bottom-panel {
+    grid-column: 1 / -1;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 2rem;
+    border: 1px solid var(--border);
+    margin-top: 2rem;
 }
 
 .history {
@@ -229,6 +234,13 @@ input:focus {
     border-radius: 6px;
     cursor: pointer;
     font-size: 0.9rem;
+}
+
+footer {
+    background: var(--bg-secondary);
+    text-align: center;
+    border-top: 1px solid var(--border);
+    margin-top: 2rem;
 }
 
 .theme-toggle {
