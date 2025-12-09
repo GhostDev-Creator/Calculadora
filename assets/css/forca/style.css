@@ -1,0 +1,224 @@
+:root {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --accent: #ff9500;
+    --text-primary: #ffffff;
+    --text-secondary: #cccccc;
+    --border: #404040;
+    --success: #4ade80;
+    --error: #ef4444;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', -apple-system, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px 20px 20px 80px;
+    position: relative;
+}
+
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    padding: 12px 16px;
+    border-radius: 20px;
+    font-size: 0.95em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.back-button:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(255, 149, 0, 0.3);
+}
+
+.back-button:active {
+    transform: scale(0.95);
+}
+
+.back-button i {
+    font-size: 1.1em;
+}
+
+.game-container {
+    background: var(--bg-secondary);
+    border-radius: 24px;
+    padding: 32px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    max-width: 420px;
+    width: 100%;
+    border: 1px solid var(--border);
+}
+
+h1 {
+    color: var(--accent);
+    margin-bottom: 24px;
+    font-size: 1.8em;
+}
+
+#word-display {
+    font-size: 2.2em;
+    font-weight: 700;
+    letter-spacing: 12px;
+    margin: 28px 0;
+    min-height: 70px;
+    color: var(--text-primary);
+}
+
+#message {
+    font-size: 1.3em;
+    margin: 20px 0;
+    color: var(--success);
+}
+
+#hangman {
+    font-size: 4.5em;
+    margin: 24px 0;
+    font-family: monospace;
+    line-height: 1;
+    font-weight: bold;
+}
+
+.hangman-stage-0:before {
+    content: " ";
+}
+
+.hangman-stage-1:before {
+    content: " O ";
+}
+
+.hangman-stage-2:before {
+    content: " O| ";
+}
+
+.hangman-stage-3:before {
+    content: " O/|";
+}
+
+.hangman-stage-4:before {
+    content: " O/|\\";
+}
+
+.hangman-stage-5:before {
+    content: " O/|X ";
+}
+
+.hangman-stage-6:before {
+    content: " O/|XX";
+}
+
+.keyboard {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 12px;
+    max-width: 420px;
+    margin: 28px auto;
+}
+
+.key {
+    background: var(--border);
+    color: var(--text-primary);
+    border: none;
+    border-radius: 12px;
+    height: 56px;
+    font-size: 1.3em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+}
+
+.key:hover:not(.used) {
+    background: var(--accent);
+    transform: translateY(-2px);
+}
+
+.key:active {
+    transform: scale(0.95);
+}
+
+.key.used {
+    background: var(--bg-primary);
+    color: var(--text-secondary);
+    cursor: not-allowed;
+}
+
+.key.correct {
+    background: var(--success);
+}
+
+.key.wrong {
+    background: var(--error);
+}
+
+.button-group {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 24px;
+    flex-wrap: wrap;
+}
+
+#restart {
+    background: var(--accent);
+    color: var(--text-primary);
+    border: none;
+    padding: 14px 28px;
+    border-radius: 24px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    min-width: 120px;
+}
+
+#restart:hover {
+    background: #e68900;
+    transform: translateY(-2px);
+}
+
+#restart:active {
+    transform: scale(0.95);
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 20px 20px 20px 70px;
+    }
+
+    .back-button {
+        top: 15px;
+        left: 15px;
+        padding: 10px 14px;
+        font-size: 0.9em;
+    }
+
+    .keyboard {
+        grid-template-columns: repeat(7, 1fr);
+    }
+}

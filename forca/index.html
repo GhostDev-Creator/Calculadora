@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Forca</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../assets/css/forca/style.css">
+</head>
+<body>
+    <a href="../index.html" class="back-button">
+        <i class="ri-arrow-left-line"></i>
+        Voltar
+    </a>
+
+    <div class="game-container">
+        <h1>Jogo da Forca</h1>
+        <div id="hangman" class="hangman-stage-0"></div>
+        <div id="word-display">_ _ _ _ _</div>
+        <div id="message">Digite ou clique nas letras!</div>
+        <div class="keyboard" id="keyboard"></div>
+        <div class="button-group">
+            <button id="restart" style="display:none;">Novo Jogo</button>
+        </div>
+    </div>
+
+    <script src="../assets/js/forca/script.js"></script>
+</body>
+</html>
